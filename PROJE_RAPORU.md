@@ -3,7 +3,7 @@
 
 ---
 
-## 📋 İÇİNDEKİLER
+## İÇİNDEKİLER
 
 1. [Introduction & Motivation](#introduction--motivation)
 2. [Methodology](#methodology)
@@ -17,7 +17,7 @@
 
 ---
 
-## 🎯 INTRODUCTION & MOTIVATION
+##  INTRODUCTION & MOTIVATION
 
 ### Problem Statement
 Mobile networks (4G/5G) carry massive, heterogeneous traffic and face growing threats such as Denial-of-Service (DoS) and stealthy low-rate attacks. Operator monitoring and rule-based intrusion detection struggle to keep pace with novel or adaptive attacks and with traffic variability caused by mobile applications and radio conditions.
@@ -31,14 +31,14 @@ This project aims to:
 
 ### Project Requirements
 As per project specification:
-- ✅ **Unsupervised ML** (Isolation Forest as baseline)
-- ✅ **Operator-style features** extraction
-- ✅ **Normal windows only** for training (30 minutes of mixed normal behavior)
-- ✅ **Flow-based detection** (each flow = one time window)
+-  **Unsupervised ML** (Isolation Forest as baseline)
+-  **Operator-style features** extraction
+-  **Normal windows only** for training (30 minutes of mixed normal behavior)
+-  **Flow-based detection** (each flow = one time window)
 
 ---
 
-## 🔬 METHODOLOGY
+##  METHODOLOGY
 
 ### 1. Dataset: CICIDS2017 (Simulated Mobile Traffic)
 
@@ -110,16 +110,16 @@ In CICIDS2017, each row represents a complete network flow (connection). Each fl
 
 ---
 
-## 🤖 MODELING: UNSUPERVISED LEARNING (ISOLATION FOREST)
+##  MODELING: UNSUPERVISED LEARNING (ISOLATION FOREST)
 
 ### Why Isolation Forest?
 
 As per project requirements, **Isolation Forest is the baseline unsupervised method**. It is chosen because:
 
-1. ✅ **Only normal data required** for training (no DoS examples needed)
-2. ✅ **Novel attack detection**: Can detect attacks not seen during training
-3. ✅ **Anomaly detection**: Specifically designed for anomaly detection
-4. ✅ **Fast and scalable**: Efficient for large datasets
+1.  **Only normal data required** for training (no DoS examples needed)
+2.  **Novel attack detection**: Can detect attacks not seen during training
+3.  **Anomaly detection**: Specifically designed for anomaly detection
+4.  **Fast and scalable**: Efficient for large datasets
 
 ### Isolation Forest Algorithm
 
@@ -148,20 +148,20 @@ IsolationForest(
 
 ---
 
-## 📊 RESULTS: ISOLATION FOREST PERFORMANCE
+##  RESULTS: ISOLATION FOREST PERFORMANCE
 
 ### Performance Metrics
 
 | Metric | Value |
 |--------|-------|
-| **DoS Detection Rate** | 88.45% ✅ |
+| **DoS Detection Rate** | 88.45%  |
 | **Accuracy** | 62.23% |
-| **Precision** | 93.28% ✅ |
+| **Precision** | 93.28%  |
 | **Recall** | 53.49% |
 | **F1-Score** | 67.99% |
 | **Normal Traffic Detection** | 53.49% |
-| **DoS False Negative Rate** | 11.55% ✅ |
-| **Normal False Positive Rate** | 46.51% ⚠️ |
+| **DoS False Negative Rate** | 11.55%  |
+| **Normal False Positive Rate** | 46.51%  |
 
 ### Confusion Matrix
 ```
@@ -179,16 +179,16 @@ Actual DoS         3,851     29,482  (FP=3,851 [Missed], TN=29,482)
 ### Analysis
 
 **Strengths:**
-- ✅ **88.45% DoS detection**: Catches 9 out of 10 DoS attacks
-- ✅ **93.28% Precision**: When it detects DoS, 93% are real DoS
-- ✅ **11.55% miss rate**: Only 3,851 attacks missed out of 33,333 (acceptable for security)
-- ✅ **Unsupervised**: Works without labeled attack data
-- ✅ **Novel attack detection**: Can detect previously unseen attacks
+-  **88.45% DoS detection**: Catches 9 out of 10 DoS attacks
+-  **93.28% Precision**: When it detects DoS, 93% are real DoS
+-  **11.55% miss rate**: Only 3,851 attacks missed out of 33,333 (acceptable for security)
+-  **Unsupervised**: Works without labeled attack data
+-  **Novel attack detection**: Can detect previously unseen attacks
 
 **Limitations:**
-- ⚠️ **46.51% false alarms**: High false positive rate (trade-off for high DoS detection)
-- ⚠️ **62.23% accuracy**: Lower due to false alarms
-- ⚠️ **Parameter tuning required**: Threshold optimization critical for balance
+-  **46.51% false alarms**: High false positive rate (trade-off for high DoS detection)
+-  **62.23% accuracy**: Lower due to false alarms
+-  **Parameter tuning required**: Threshold optimization critical for balance
 
 **Trade-off Analysis:**
 The model is tuned to prioritize security (high DoS detection) at the cost of more false alarms. This is a common trade-off in intrusion detection systems where missing attacks is more critical than false alarms.
@@ -202,7 +202,7 @@ The model outputs:
 
 ---
 
-## 🔬 EXTENDED ANALYSIS: SUPERVISED LEARNING COMPARISON
+##  EXTENDED ANALYSIS: SUPERVISED LEARNING COMPARISON
 
 ### Why Supervised Learning Analysis?
 
@@ -246,35 +246,35 @@ While the project requirements specify **unsupervised learning**, we also tested
 
 ---
 
-## 💬 DISCUSSION: UNSUPERVISED VS SUPERVISED
+##  DISCUSSION: UNSUPERVISED VS SUPERVISED
 
 ### Isolation Forest (Unsupervised) - Project Requirement
 
 **Advantages:**
-- ✅ **No labeled data needed**: Only normal traffic required
-- ✅ **Novel attack detection**: Can detect new, unseen attacks
-- ✅ **Real-world applicable**: Works when attack labels unavailable
-- ✅ **Meets project requirements**: Baseline method as specified
+-  **No labeled data needed**: Only normal traffic required
+-  **Novel attack detection**: Can detect new, unseen attacks
+-  **Real-world applicable**: Works when attack labels unavailable
+-  **Meets project requirements**: Baseline method as specified
 
 **Disadvantages:**
-- ❌ **Lower accuracy**: 62.23% overall accuracy (vs 99.95%)
-- ❌ **Higher false alarms**: 46.51% false positive rate
-- ❌ **Parameter tuning**: Contamination and threshold need careful adjustment
+-  **Lower accuracy**: 62.23% overall accuracy (vs 99.95%)
+-  **Higher false alarms**: 46.51% false positive rate
+-  **Parameter tuning**: Contamination and threshold need careful adjustment
 
 **Use Case**: When labeled attack data is not available (real-world scenarios)
 
 ### Supervised Learning (XGBoost) - Extended Analysis
 
 **Advantages:**
-- ✅ **Very high performance**: 99.80% DoS detection
-- ✅ **Excellent accuracy**: 99.95% overall accuracy
-- ✅ **Zero false positives**: 100% precision (no false alarms)
-- ✅ **Low false negatives**: Only 0.2% attacks missed
+-  **Very high performance**: 99.80% DoS detection
+-  **Excellent accuracy**: 99.95% overall accuracy
+-  **Zero false positives**: 100% precision (no false alarms)
+-  **Low false negatives**: Only 0.2% attacks missed
 
 **Disadvantages:**
-- ❌ **Requires labeled data**: Both normal and attack examples needed
-- ❌ **Limited to known attacks**: May not detect novel attack types
-- ❌ **Not in project requirements**: Not specified as baseline method
+-  **Requires labeled data**: Both normal and attack examples needed
+-  **Limited to known attacks**: May not detect novel attack types
+-  **Not in project requirements**: Not specified as baseline method
 
 **Use Case**: When labeled attack data is available (evaluation scenarios)
 
@@ -282,22 +282,22 @@ While the project requirements specify **unsupervised learning**, we also tested
 
 | Aspect | Isolation Forest | XGBoost |
 |--------|------------------|---------|
-| **DoS Detection** | 88.45% ✅ | 99.80% ✅ |
-| **Accuracy** | 62.23% | 99.95% ✅ |
-| **Precision** | 93.28% ✅ | 100.00% ✅ |
-| **False Alarms** | 46.51% ⚠️ | 0.20% ✅ |
-| **Missed Attacks** | 11.55% ✅ | 0.67% ✅ |
+| **DoS Detection** | 88.45%  | 99.80%  |
+| **Accuracy** | 62.23% | 99.95%  |
+| **Precision** | 93.28%  | 100.00%  |
+| **False Alarms** | 46.51%  | 0.20%  |
+| **Missed Attacks** | 11.55%  | 0.67%  |
 | **Labeled Data Required** | No (only normal) | Yes (normal + attacks) |
-| **Novel Attack Detection** | Yes ✅ | Limited ⚠️ |
-| **Project Requirement** | ✅ Yes (baseline) | ❌ No (extended) |
+| **Novel Attack Detection** | Yes  | Limited  |
+| **Project Requirement** |  Yes (baseline) |  No (extended) |
 | **Real-world Applicability** | High (no labels) | Medium (needs labels) |
 
 ### Recommendation
 
 **For Project Report:**
-1. ✅ **Primary Method**: Isolation Forest (meets project requirements)
-2. ✅ **Extended Analysis**: Supervised learning comparison (adds value)
-3. ✅ **Discussion**: Compare both approaches and their use cases
+1.  **Primary Method**: Isolation Forest (meets project requirements)
+2.  **Extended Analysis**: Supervised learning comparison (adds value)
+3.  **Discussion**: Compare both approaches and their use cases
 
 **For Real-World Application:**
 - **Labeled data available**: Use XGBoost (better performance)
@@ -305,17 +305,17 @@ While the project requirements specify **unsupervised learning**, we also tested
 
 ---
 
-## ✅ CONCLUSION
+##  CONCLUSION
 
 ### Main Findings
 
 1. **Isolation Forest Meets Project Requirements**
-   - ✅ Unsupervised learning implemented successfully
-   - ✅ Operator-style features extracted (77 numeric features)
-   - ✅ Normal windows only for training (80,000 flows)
-   - ✅ 88.45% DoS detection achieved (9 out of 10 attacks caught)
-   - ✅ 11.55% miss rate (acceptable for security)
-   - ⚠️ Trade-off: 46.51% false alarm rate (prioritizes security)
+   -  Unsupervised learning implemented successfully
+   -  Operator-style features extracted (77 numeric features)
+   -  Normal windows only for training (80,000 flows)
+   -  88.45% DoS detection achieved (9 out of 10 attacks caught)
+   -  11.55% miss rate (acceptable for security)
+   -  Trade-off: 46.51% false alarm rate (prioritizes security)
 
 2. **Supervised Learning Shows Superior Performance**
    - XGBoost: 99.80% DoS detection (11% improvement over Isolation Forest)
@@ -331,18 +331,18 @@ While the project requirements specify **unsupervised learning**, we also tested
 
 ### Project Contributions
 
-1. ✅ **Unsupervised anomaly detection** implemented (project requirement)
-2. ✅ **Operator-style features** extracted and used
-3. ✅ **Flow-based detection** validated (equivalent to window-based)
-4. ✅ **Extended analysis** with supervised learning (academic value)
-5. ✅ **Comprehensive comparison** of approaches
+1.  **Unsupervised anomaly detection** implemented (project requirement)
+2.  **Operator-style features** extracted and used
+3.  **Flow-based detection** validated (equivalent to window-based)
+4.  **Extended analysis** with supervised learning (academic value)
+5.  **Comprehensive comparison** of approaches
 
 ### Final Recommendation
 
 **For Project Submission:**
-- ✅ **Use Isolation Forest** as primary method (meets requirements)
-- ✅ **Include XGBoost** in extended analysis section (shows thoroughness)
-- ✅ **Compare both** in discussion section
+-  **Use Isolation Forest** as primary method (meets requirements)
+-  **Include XGBoost** in extended analysis section (shows thoroughness)
+-  **Compare both** in discussion section
 
 **Report Structure:**
 1. Introduction & Motivation
@@ -353,14 +353,14 @@ While the project requirements specify **unsupervised learning**, we also tested
 6. Conclusion
 
 This approach:
-- ✅ Meets all project requirements (Isolation Forest)
-- ✅ Adds academic value (supervised comparison)
-- ✅ Shows thorough analysis (both approaches tested)
-- ✅ Demonstrates understanding (knows when to use each)
+-  Meets all project requirements (Isolation Forest)
+-  Adds academic value (supervised comparison)
+-  Shows thorough analysis (both approaches tested)
+-  Demonstrates understanding (knows when to use each)
 
 ---
 
-## 📚 REFERENCES
+##  REFERENCES
 
 1. Sharafaldin, I., Lashkari, A. H., & Ghorbani, A. A. (2018). Toward Generating a New Intrusion Detection Dataset and Intrusion Traffic Characterization. ICISSP.
 

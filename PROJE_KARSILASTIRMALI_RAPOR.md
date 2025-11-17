@@ -118,15 +118,15 @@ colsample_bytree = 0.8
 | Sınıf | Tespit Oranı |
 |-------|--------------|
 | **Normal Trafik Tespiti** | 53.49% |
-| **DoS Saldırı Tespiti** | 88.45% ✅ |
-| **DoS False Negative Rate** | 11.55% ✅ |
-| **Normal False Positive Rate** | 46.51% ⚠️ |
+| **DoS Saldırı Tespiti** | 88.45%  |
+| **DoS False Negative Rate** | 11.55%  |
+| **Normal False Positive Rate** | 46.51%  |
 
 #### Confusion Matrix
 | | Actual Normal | Actual DoS |
 |---|---------------|------------|
-| **Predicted Normal (TP/TN)** | 53,487 | 3,851 (Missed) ⚠️ |
-| **Predicted DoS (FN/FP)** | 46,513 (False Alarm) ⚠️ | 29,482 ✅ |
+| **Predicted Normal (TP/TN)** | 53,487 | 3,851 (Missed)  |
+| **Predicted DoS (FN/FP)** | 46,513 (False Alarm)  | 29,482  |
 
 **Test Verisi:**
 - Normal: 100,000 flow
@@ -134,10 +134,10 @@ colsample_bytree = 0.8
 - Toplam: 133,333 flow
 
 **Analiz:**
-- ✅ Precision %93.28 - tespit edilen DoS'ların çoğu gerçek
-- ✅ DoS tespiti %88.45 - 10 saldırıdan yaklaşık 9'u yakalandı
-- ✅ 3,851 DoS saldırısı kaçırıldı (33,333'ten) - %11.55 miss rate (kabul edilebilir)
-- ⚠️ False alarm oranı %46.51 - yüksek (güvenlik için trade-off)
+-  Precision %93.28 - tespit edilen DoS'ların çoğu gerçek
+-  DoS tespiti %88.45 - 10 saldırıdan yaklaşık 9'u yakalandı
+-  3,851 DoS saldırısı kaçırıldı (33,333'ten) - %11.55 miss rate (kabul edilebilir)
+-  False alarm oranı %46.51 - yüksek (güvenlik için trade-off)
 
 ---
 
@@ -169,11 +169,11 @@ colsample_bytree = 0.8
 | **Actual DoS** | 0 | 6,000 |
 
 **Analiz:**
-- ✅ %99.95 genel doğruluk - mükemmel performans
-- ✅ %100 precision - tespit edilen her DoS gerçek DoS
-- ✅ %99.80 DoS tespiti - neredeyse tüm saldırılar tespit edildi
-- ✅ Sadece 4 DoS saldırısı kaçtı (6,000'den)
-- ✅ Hiç false positive yok - normal trafik yanlış etiketlenmedi
+-  %99.95 genel doğruluk - mükemmel performans
+-  %100 precision - tespit edilen her DoS gerçek DoS
+-  %99.80 DoS tespiti - neredeyse tüm saldırılar tespit edildi
+-  Sadece 4 DoS saldırısı kaçtı (6,000'den)
+-  Hiç false positive yok - normal trafik yanlış etiketlenmedi
 
 ---
 
@@ -183,15 +183,15 @@ colsample_bytree = 0.8
 
 | Özellik | Isolation Forest | Supervised Learning (XGBoost) |
 |---------|------------------|-------------------------------|
-| **DoS Tespiti** | 88.45% ✅ | 99.80% ✅ |
-| **Accuracy** | 62.23% | 99.95% ✅ |
-| **F1-Score** | 67.99% | 99.90% ✅ |
-| **Precision** | 93.28% ✅ | 100.00% ✅ |
-| **Kaçan Saldırı** | 3,851 / 33,333 (11.55%) ✅ | 4 / 6,000 (0.67%) ✅ |
-| **False Alarm** | 46,513 / 100,000 (46.51%) ⚠️ | 4 / 1,996 (0.20%) ✅ |
-| **Eğitim Verisi** | Sadece Normal ✅ | Normal + DoS ⚠️ |
-| **Yeni Saldırı Tespiti** | İyi ✅ | Zayıf ⚠️ |
-| **Etiket İhtiyacı** | Yok ✅ | Var ⚠️ |
+| **DoS Tespiti** | 88.45%  | 99.80%  |
+| **Accuracy** | 62.23% | 99.95%  |
+| **F1-Score** | 67.99% | 99.90%  |
+| **Precision** | 93.28%  | 100.00%  |
+| **Kaçan Saldırı** | 3,851 / 33,333 (11.55%)  | 4 / 6,000 (0.67%)  |
+| **False Alarm** | 46,513 / 100,000 (46.51%)  | 4 / 1,996 (0.20%)  |
+| **Eğitim Verisi** | Sadece Normal  | Normal + DoS  |
+| **Yeni Saldırı Tespiti** | İyi  | Zayıf  |
+| **Etiket İhtiyacı** | Yok  | Var  |
 
 ### 4.2 Performans Grafikleri
 
@@ -217,7 +217,7 @@ LightGBM:         ████████████████████�
 
 ### 5.1 Isolation Forest (Unsupervised)
 
-#### ✅ Güçlü Yönler
+####  Güçlü Yönler
 1. **Etiket İhtiyacı Yok:** Sadece normal trafik ile eğitilebilir
 2. **Yeni Saldırı Tespiti:** Bilinmeyen saldırı türlerini tespit edebilir
 3. **Gerçek Dünya Senaryosu:** Operatör ağlarında etiketli veri toplamak zor
@@ -225,7 +225,7 @@ LightGBM:         ████████████████████�
 5. **İyi DoS Tespiti:** %88.45 DoS tespiti - 10 saldırıdan 9'u yakalanıyor
 6. **Düşük Miss Rate:** %11.55 false negative - güvenlik açısından kabul edilebilir
 
-#### ⚠️ Zayıf Yönler
+####  Zayıf Yönler
 1. **Yüksek False Alarm:** %46.51 false alarm - normal kullanıcıların yarısı etkileniyor
 2. **Düşük Accuracy:** %62.23 - false alarmlar nedeniyle düşük
 3. **Trade-off Gerekli:** DoS yakalamak için yüksek false alarm kabul edilmeli
@@ -235,14 +235,14 @@ LightGBM:         ████████████████████�
 
 ### 5.2 Supervised Learning (XGBoost)
 
-#### ✅ Güçlü Yönler
+####  Güçlü Yönler
 1. **Mükemmel DoS Tespiti:** %99.80 - neredeyse tüm saldırılar tespit edildi
 2. **Çok Düşük False Negative:** Sadece 4 saldırı kaçtı (6,000'den)
 3. **%100 Precision:** Hiç false positive yok
 4. **Yüksek Güvenilirlik:** Gerçek dünya uygulaması için ideal
 5. **Hızlı Çıkarım:** Eğitildikten sonra çok hızlı tahmin yapar
 
-#### ⚠️ Zayıf Yönler
+####  Zayıf Yönler
 1. **Etiketli Veri Gereksinimi:** Hem normal hem DoS örnekleri gerekli
 2. **Yeni Saldırı Zayıflığı:** Bilinmeyen saldırı türlerini tespit edemeyebilir
 3. **Veri Toplama Zorluğu:** Gerçek ağlarda etiketli DoS verisi toplamak zor
@@ -333,10 +333,10 @@ LightGBM:         ████████████████████�
 ```
 
 **Avantajlar:**
-- ✅ Yeni saldırılar tespit edilir (Isolation Forest)
-- ✅ Bilinen saldırılar %99.80 doğrulukla tespit edilir (XGBoost)
-- ✅ False alarm oranı minimuma iner
-- ✅ Sürekli öğrenme ve iyileşme
+-  Yeni saldırılar tespit edilir (Isolation Forest)
+-  Bilinen saldırılar %99.80 doğrulukla tespit edilir (XGBoost)
+-  False alarm oranı minimuma iner
+-  Sürekli öğrenme ve iyileşme
 
 ---
 
@@ -345,14 +345,14 @@ LightGBM:         ████████████████████�
 ### 7.1 Genel Değerlendirme
 
 #### Unsupervised Learning (Isolation Forest)
-- **Akademik Proje İçin:** ✅ **MÜKEMMEL**
-- **Gerçek Dünya İçin:** ⚠️ **TRADE-OFF GEREKLİ** (false alarm vs güvenlik)
+- **Akademik Proje İçin:**  **MÜKEMMEL**
+- **Gerçek Dünya İçin:**  **TRADE-OFF GEREKLİ** (false alarm vs güvenlik)
 - **Öne Çıkan:** %88.45 DoS tespiti, %11.55 miss rate (güvenlik için iyi)
 - **Zayıf Yön:** %46.51 false alarm oranı yüksek (güvenlik trade-off'u)
 
 #### Supervised Learning (XGBoost)
-- **Akademik Proje İçin:** ✅ **MÜKEMMEL**
-- **Gerçek Dünya İçin:** ✅ **MÜKEMMEL** (bilinen saldırılar için)
+- **Akademik Proje İçin:**  **MÜKEMMEL**
+- **Gerçek Dünya İçin:**  **MÜKEMMEL** (bilinen saldırılar için)
 - **Öne Çıkan:** %99.80 DoS tespiti, %100 precision
 - **Zayıf Yön:** Etiketli veri gereksinimi, yeni saldırı zayıflığı
 
@@ -429,7 +429,7 @@ Bu projede DoS anomali tespiti için hem **unsupervised learning (Isolation Fore
    - Gerçek dünya uygulamaları için en uygun çözüm
    - Sürekli öğrenme ve iyileşme imkanı
 
-### Proje Başarısı: ✅
+### Proje Başarısı: 
 
 Her iki yöntem de başarıyla implemente edildi, detaylı analizler yapıldı ve kapsamlı karşılaştırmalar sunuldu. Proje akademik gereklilikler için **mükemmel** seviyededir.
 
